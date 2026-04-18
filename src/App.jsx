@@ -6,6 +6,12 @@ function App() {
   const [song,setSong]=useState("");
   const [artist,setArtist]=useState("");
 
+ const  handleSearch=()=>{
+    console.log("Song",song);
+    console.log("Artist",artist);
+
+  }
+
   return (
     <div>
       <h1>Lyrics finder</h1>
@@ -13,7 +19,7 @@ function App() {
       <br/>
       <input type="text" placeholder='Enter artist name' value={artist} onChange={(e)=>setArtist(e.target.value)}/>
       <br/>
-      <button>Search</button>
+      <button onClick={handleSearch}>Search</button>
       <p>Song : {song}</p>
       <p>Artist : {artist}</p>
     </div>
