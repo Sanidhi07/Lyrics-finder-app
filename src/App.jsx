@@ -5,13 +5,21 @@ import './App.css'
 function App() {
   const [song,setSong]=useState("");
   const [artist,setArtist]=useState("");
+  const [lyrics,setLyrics]=useState("");
 
- const  handleSearch=()=>{
-    console.log("Song",song);
-    console.log("Artist",artist);
+ const handleSearch = async () => {
+  try {
+    const response = await fetch(
+      `https://api.lyrics.ovh/v1/${artist}/${song}`
+    );
 
+    const data = await response.json();
+
+    setLyrics(data.lyrics);
+  } catch (error) {
+    console.log(error);
   }
-
+};
   return (
     <div>
       <h1>Lyrics finder</h1>
@@ -20,8 +28,10 @@ function App() {
       <input type="text" placeholder='Enter artist name' value={artist} onChange={(e)=>setArtist(e.target.value)}/>
       <br/>
       <button onClick={handleSearch}>Search</button>
-      <p>Song : {song}</p>
-      <p>Artist : {artist}</p>
+     <div>
+       <h3>Lyrics:</h3>
+       <p>{lyrics}</p>
+     </div>
     </div>
   )
 }
