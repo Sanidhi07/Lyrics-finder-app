@@ -42,6 +42,9 @@ button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+.recent-box {
+  margin-top: 20px;
+}
 
 .lyrics-box {
   margin-top: 20px;
@@ -62,6 +65,15 @@ button:disabled {
   transform: scale(1.01);
   transition: 0.2s ease;
 }
+.lyrics-box button {
+  margin-bottom: 10px;
+  background: #444;
+}
+
+.lyrics-box button:hover {
+  background: #666;
+}
+
 .loading {
   color: orange;
 }
