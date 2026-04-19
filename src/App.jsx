@@ -18,6 +18,7 @@ const handleCopy = () => {
   
 
  const handleSearch = async () => {
+    if (loading) return;
   if (!song.trim() || !artist.trim()) {
     setError("Please enter both song and artist 😅");
     return;
@@ -50,16 +51,18 @@ const handleCopy = () => {
 
   return (
     <div className="container">
-      <h1>Lyrics finder</h1>
+      <h1>🎵 Lyrics finder</h1>
       <div className='search-box'>
-      <input type="text" placeholder='Enter song name' value={song} onChange={(e) => {
+      <input type="text" placeholder='e.g. Perfect' value={song} onChange={(e) => {
   setSong(e.target.value);
   setError("");
-}} />
+}} 
+ onKeyDown={(e) => e.key === "Enter" && handleSearch()}/>
       <br/>
-      <input type="text" placeholder='Enter artist name' value={artist} onChange={(e)=>{setArtist(e.target.value);setError("")}} />
+      <input type="text" placeholder='e.g. Ed Sheeran' value={artist} onChange={(e)=>{setArtist(e.target.value);setError("")}} 
+       onKeyDown={(e) => e.key === "Enter" && handleSearch()}/>
       <br/>
-      <button onClick={handleSearch} disabled={loading}>{loading ? "Searching..." : "Search"}</button>
+      <button onClick={handleSearch} disabled={!song.trim() || !artist.trim() || loading}>{loading ? "Searching..." : "Search"}</button>
       </div>
       {loading && <p className='loading'>Loading...⏳</p>}
      {error && <p className='error'>{error}</p>}
@@ -74,8 +77,13 @@ const handleCopy = () => {
        <p>{lyrics}</p>
      </div>
     )}
+    <footer>
+  <p>Made by Sanidhi 💖</p>
+</footer>
     </div>
+    
   )
+  
 }
 
 export default App;
