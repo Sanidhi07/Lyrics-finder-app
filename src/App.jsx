@@ -28,7 +28,7 @@ const handleCopy = () => {
   setLyrics("");
   try {
     const response = await fetch(
-      `http://localhost:5000/lyrics?artist=${artist}&song=${song}`
+      `https://lyrics-finder-app.onrender.com/lyrics?artist=${artist}&song=${song}`
     );
 
     const data = await response.json();
