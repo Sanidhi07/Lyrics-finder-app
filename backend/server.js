@@ -1,5 +1,6 @@
 const express=require("express");
 const cors=require("cors");
+const PORT=process.env.PORT || 5000
 
 
 const app=express();
@@ -38,6 +39,6 @@ app.get("/lyrics",async(req,res)=>{
 });
 
 //start server
-app.listen(5000,()=>{
-    console.log("server running on port 5000");
-})
+app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
+});
