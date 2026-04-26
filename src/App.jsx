@@ -28,7 +28,7 @@ const handleCopy = () => {
   setLyrics("");
   try {
     const response = await fetch(
-      `https://api.lyrics.ovh/v1/${artist}/${song}`
+      `http://localhost:5000/lyrics?artist=${artist}&song=${song}`
     );
 
     const data = await response.json();
@@ -36,7 +36,7 @@ const handleCopy = () => {
     if(data.lyrics){
       setLyrics(data.lyrics);
     }else {
-      setError("Lyrics not found")
+      setError(data.error || "Lyrics not found")
     }
    
   } catch (error) {
